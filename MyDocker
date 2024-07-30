@@ -1,0 +1,30 @@
+# Use the official Rust image as the base image to ensure consistency in the development environment.
+FROM rust:1.72
+
+
+# Set the working directory inside the Docker container. All subsequent commands will run in this directory.
+WORKDIR /usr/src/myapp
+
+
+# Copy the Cargo.toml and Cargo.lock files first. This allows Docker to cache dependencies and speed up rebuilds.
+COPY Cargo.toml Cargo.lock ./
+
+
+# Fetch and cache dependencies to avoid re-downloading them on each build.
+RUN cargo fetch
+
+
+# Copy the source code into the Docker container.
+COPY src ./src
+
+
+# Build the Rust application in release mode to optimize performance.
+RUN cargo build --release
+
+
+# Expose port 8080 to allow external access to the application.
+EXPOSE 8080
+
+
+# Define the command to run the application. This command will be executed when the container starts.
+CMD ["cargo", "run", "--release"]
