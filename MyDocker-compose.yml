@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  # Define a service named 'app'
+  app:
+    # Build the Docker image using the Dockerfile in the current directory
+    build: .
+    # Map port 8080 on the host to port 8080 on the container
+    ports:
+      - "8080:8080"
+    # Set environment variables for the application
+    environment:
+      - RUST_LOG=info
