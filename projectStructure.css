@@ -1,0 +1,13 @@
+
+
+my-cicd-repo/
+├── .github/
+│   └── workflows/
+│       └── ci-cd.yml
+├── src/
+│   └── main.rs
+├── tests/
+│   └── integration_tests.rs
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
